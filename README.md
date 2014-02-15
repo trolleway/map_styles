@@ -10,7 +10,7 @@ Maperitive style for medium-scale small cities map on black-white printer.
 Стиль для средне-масштабных карт городов размером с райцентр для чёрно-белой печати.
 Based on defatult style.
 Optimized for Russian tagging features.
-![sample map cropped](http://.jpg)
+![sample map cropped](http://farm3.staticflickr.com/2881/12536698474_9034c9562f_o.png)
 
 ### maperitive/walking_papers_moscow.mrules 
 Maperitive style for walking papers print on black-white printer.
