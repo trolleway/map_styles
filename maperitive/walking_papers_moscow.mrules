@@ -44,7 +44,7 @@ features
 		grass : landuse=grass
 		fell : natural=fell
 		national park : boundary=national_park
-		allotments : landuse=allotments
+//		allotments : landuse=allotments
 		academic : node[amenity=university OR amenity=college OR amenity=school] area[amenity=university OR amenity=college OR amenity=school]
 		meadow : natural=meadow OR landuse=meadow
 		nature reserve : leisure=nature_reserve
