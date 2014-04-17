@@ -224,28 +224,45 @@ rules
 				border-width : 8:1
 			draw : line		
 		elseif : *secondary
-			define
-				min-zoom : 12
-				line-color : #FDFDFD
-				line-width : 11:1;13:2;15:12;18:14
+			define	//side road borders
+				min-zoom : 13
+				line-color : white
+				line-style : solid
+				line-width : 12:1;13:2.5;15:14;18:16
 				border-style : solid
-				border-color : #CACACA
-				border-width : 15%
+				border-color : darkgray
+				border-width : 20%
 			draw : line
-			define
-				min-zoom : 8.5
-				max-zoom : 12
-				border-style : none
-			draw : line
-			define
-				max-zoom:14
-			draw : text
-			define
+			define	//middle punktir
 				min-zoom : 15
-				line-color :  black 
-				line-style : dashlong
-				line-width : 1.5
+				line-color :  darkgray 
+				line-style : solid
+				line-width : 2
 				border-width : 8:1
+			draw : line			
+			define	//left punktir
+				min-zoom : 15
+				line-color :  darkgray
+				line-offset : 4				
+				line-offset-sides : left				
+				line-style : dashlong
+				line-width : 0.5
+				border-width : 8:1
+			draw : line			
+			define	//left punktir
+				min-zoom : 15
+				line-color :  darkgray
+				line-offset : 4				
+				line-offset-sides : right				
+				line-style : dashlong
+				line-width : 0.5
+				border-width : 8:1
+			draw : line			
+			define	//low-zoom
+				min-zoom : 10
+				max-zoom : 13
+				border-style : none
+				line-color : white darkgray 25%
 			draw : line	
 		elseif : *tertiary
 			define
@@ -295,7 +312,7 @@ rules
 
 		elseif : $regex("(.*residential)|(.*unclassified)")
 
-			define
+			define	//side road borders
 				min-zoom : 13
 				line-color : white
 				line-style : solid
@@ -304,14 +321,14 @@ rules
 				border-color : darkgray
 				border-width : 20%
 			draw : line
-			define
+			define	//middle punktir
 				min-zoom : 15
 				line-color :  darkgray 
 				line-style : dashlong
 				line-width : 1.5
 				border-width : 8:1
 			draw : line			
-			define
+			define	//low-zoom
 				min-zoom : 10
 				max-zoom : 13
 				border-style : none
