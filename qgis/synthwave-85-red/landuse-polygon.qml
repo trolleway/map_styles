@@ -25,7 +25,7 @@
           <prop k="distance_unit" v="MM"/>
           <prop k="line_width_unit" v="MM"/>
           <prop k="lineangle" v="45"/>
-          <prop k="linewidth" v="0.2"/>
+          <prop k="linewidth" v="0.3"/>
           <prop k="offset" v="0"/>
           <prop k="offset_unit" v="MM"/>
           <symbol alpha="1" type="line" name="@0@1">
@@ -49,8 +49,8 @@
           <prop k="distance" v="1.5"/>
           <prop k="distance_unit" v="MM"/>
           <prop k="line_width_unit" v="MM"/>
-          <prop k="lineangle" v="305"/>
-          <prop k="linewidth" v="0.2"/>
+          <prop k="lineangle" v="315"/>
+          <prop k="linewidth" v="0.3"/>
           <prop k="offset" v="0"/>
           <prop k="offset_unit" v="MM"/>
           <symbol alpha="1" type="line" name="@0@2">
