@@ -5,7 +5,7 @@ Map rendering styles.
 
 ## Maperitive
 ==========
-### maperitive/medium_zoom_city.mrules
+### maperitive/medium_zoom_city.mrules.mrules 
 Maperitive style for medium-scale small cities map on black-white printer.
 Стиль для средне-масштабных карт городов размером с райцентр для чёрно-белой печати.
 Based on defatult style.
