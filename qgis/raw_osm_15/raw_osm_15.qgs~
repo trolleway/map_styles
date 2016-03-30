@@ -29,10 +29,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>3865724.5770907555706799</xmin>
-      <ymin>7761223.37181232869625092</ymin>
-      <xmax>3870814.53682518983259797</xmax>
-      <ymax>7765525.77597921155393124</ymax>
+      <xmin>3384307.28855382744222879</xmin>
+      <ymin>7430177.82407630793750286</ymin>
+      <xmax>4306631.07544352114200592</xmax>
+      <ymax>8209792.97055471688508987</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -200,11 +200,11 @@
       <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
         <rules key="{6b82831a-5310-49c0-8a2c-8e39c01722c5}">
           <rule checkstate="0" key="{39d44f14-cb0f-46ec-bc66-37cbdf04e1a9}" symbol="0"/>
-          <rule filter="&quot;highway&quot;='tertiary'" key="{97c47a1e-4bf7-42bd-a9c0-c2d846ca06ef}" symbol="1" label="highway=tertiary"/>
+          <rule filter="&quot;highway&quot;='tertiary' AND  @map_scale &lt; @villages_level " key="{97c47a1e-4bf7-42bd-a9c0-c2d846ca06ef}" symbol="1" label="highway=tertiary"/>
           <rule filter="&quot;highway&quot; = 'secondary'" key="{02a26e41-0be9-4da6-8eb1-4d14f373335c}" symbol="2" label="highway=secondary"/>
           <rule filter="&quot;highway&quot; IN ('primary','primary_link','trunk','trunk_link','motorway','motorway_link')" key="{3d193582-fca9-4a16-93cb-8bdbca5eae15}" symbol="3" label="highway=primary"/>
           <rule filter="getTag( &quot;other_tags&quot;,'railway') IN ('rail')" key="{85e8733b-680e-4173-afae-c2e54a9abd00}" symbol="4" label="Railway"/>
-          <rule filter="&quot;highway&quot;='unclassified'" key="{7cfb50f5-fc8b-475d-b560-05a2de8c220b}" symbol="5" label="highway=unclassified"/>
+          <rule filter="&quot;highway&quot;='unclassified' AND  @map_scale &lt;  @hamlets_level " key="{7cfb50f5-fc8b-475d-b560-05a2de8c220b}" symbol="5" label="highway=unclassified"/>
         </rules>
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="line" name="0">
@@ -1269,28 +1269,28 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
         <rules key="{faffe07c-f3d5-4ff4-8165-ee4252115c43}">
-          <rule filter="&quot;place&quot; = 'allotments'" key="{f980b5a7-4681-4115-9306-1167aa823d9b}" symbol="0" label="allotments"/>
-          <rule filter="&quot;place&quot; = 'city'" key="{e1f47edd-1d34-4868-999a-e7caaa65406e}" symbol="1" label="city"/>
-          <rule filter="&quot;place&quot; = 'hamlet'" key="{83e2a1ec-c667-4fb3-a7c1-2641224be223}" symbol="2" label="hamlet"/>
-          <rule filter="&quot;place&quot; = 'island'" key="{a20747e0-8752-49cb-b860-3050c6308fab}" symbol="3" label="island"/>
-          <rule filter="&quot;place&quot; = 'islet'" key="{d7e393e3-1bf4-4d95-b690-b1d3b65d136d}" symbol="4" label="islet"/>
-          <rule filter="&quot;place&quot; = 'isolated_dwelling'" key="{f86b9e2f-8ac1-4331-aaa1-bd4a0605fe9c}" symbol="5" label="isolated_dwelling"/>
-          <rule filter="&quot;place&quot; = 'locality' AND  getTag(  &quot;other_tags&quot; ,'population') &lt;> 0" key="{d061550d-2cfa-47d6-8992-b240f58c72cd}" symbol="6" label="locality"/>
-          <rule filter="&quot;place&quot; = 'mountain_range'" key="{4d8950c4-4914-4018-a34f-39989bb67470}" symbol="7" label="mountain_range"/>
-          <rule filter="&quot;place&quot; = 'neighbourhood'" key="{f3d6265d-84f1-40b6-b7dc-77efa7937f29}" symbol="8" label="neighbourhood"/>
-          <rule filter="&quot;place&quot; = 'quarter'" key="{389098b1-9fae-44c4-89bb-d2627aa517b0}" symbol="9" label="quarter"/>
-          <rule filter="&quot;place&quot; = 'state'" key="{a97994e4-100e-49e1-9507-d61c6ed2bb45}" symbol="10" label="state"/>
-          <rule filter="&quot;place&quot; = 'suburb'" key="{357c50ab-d239-4ffa-857e-788f70e09895}" symbol="11" label="suburb"/>
-          <rule filter="&quot;place&quot; = 'town'" key="{430db0c3-8924-4ea2-b3a3-b1b27def9e99}" symbol="12" label="town"/>
-          <rule filter="&quot;place&quot; = 'village'" key="{5f85b28e-4bb2-4fff-a2fd-9cf4de7e8040}" symbol="13" label="village"/>
+          <rule checkstate="0" filter="&quot;place&quot; = 'state'" key="{a97994e4-100e-49e1-9507-d61c6ed2bb45}" symbol="0" label="state"/>
+          <rule filter="&quot;place&quot; = 'city'" key="{aa5c9a58-d440-4922-867d-c1127aeef26b}" symbol="1" label="city"/>
+          <rule filter="&quot;place&quot; = 'town'" key="{430db0c3-8924-4ea2-b3a3-b1b27def9e99}" symbol="2" label="town"/>
+          <rule scalemaxdenom="100000" filter="&quot;place&quot; = 'suburb'  AND  @map_scale &lt;  @hamlets_level " key="{6ff689c6-7529-4248-9271-b45677b7e62c}" symbol="3" scalemindenom="1" label="suburb"/>
+          <rule scalemaxdenom="400000" filter="&quot;place&quot; = 'village' AND  @map_scale &lt;  @villages_level " key="{5f85b28e-4bb2-4fff-a2fd-9cf4de7e8040}" symbol="4" scalemindenom="1" label="village"/>
+          <rule scalemaxdenom="100000" filter="&quot;place&quot; = 'hamlet'  AND  @map_scale &lt;  @villages_level " key="{003cb954-2787-468d-96d2-60ddba86fff7}" symbol="5" scalemindenom="1" label="hamlet"/>
+          <rule scalemaxdenom="200000" filter="&quot;place&quot; = 'locality' AND  getTag(  &quot;other_tags&quot; ,'population') &lt;> 0  AND  @map_scale &lt;  @hamlets_level " key="{465bcd67-1039-4a0f-b202-60c28e30b947}" symbol="6" scalemindenom="1" label="locality"/>
+          <rule checkstate="0" filter="&quot;place&quot; = 'allotments'" key="{7565a725-8592-4ebf-9d0f-c6d9f2cc0549}" symbol="7" label="allotments"/>
+          <rule checkstate="0" filter="&quot;place&quot; = 'island'" key="{89a0a84e-ac9e-47a1-b6c8-86548db77ab8}" symbol="8" label="island"/>
+          <rule checkstate="0" filter="&quot;place&quot; = 'islet'" key="{d565f2ad-5fb4-475c-b716-b17940f7de02}" symbol="9" label="islet"/>
+          <rule checkstate="0" filter="&quot;place&quot; = 'isolated_dwelling'" key="{891f4023-76b0-453f-88ed-2f96d930cf9c}" symbol="10" label="isolated_dwelling"/>
+          <rule checkstate="0" filter="&quot;place&quot; = 'mountain_range'" key="{7a97817c-d76e-408a-a309-d56a5bf40b0a}" symbol="11" label="mountain_range"/>
+          <rule checkstate="0" filter="&quot;place&quot; = 'neighbourhood'" key="{e3207b55-7982-4dbe-bc8b-a9b6c0f8bab2}" symbol="12" label="neighbourhood"/>
+          <rule checkstate="0" filter="&quot;place&quot; = 'quarter'" key="{abf4c213-b1c4-4659-b94f-76832aa853d1}" symbol="13" label="quarter"/>
         </rules>
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="108,160,105,255"/>
+              <prop k="color" v="34,223,103,255"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="rectangle"/>
+              <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -1299,7 +1299,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="outline_width" v="0"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
+              <prop k="scale_method" v="diameter"/>
               <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
@@ -1349,7 +1349,7 @@ def my_form_open(dialog, layer, feature):
           <symbol alpha="1" clip_to_extent="1" type="marker" name="10">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="34,223,103,255"/>
+              <prop k="color" v="29,214,171,255"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
@@ -1370,7 +1370,7 @@ def my_form_open(dialog, layer, feature):
           <symbol alpha="1" clip_to_extent="1" type="marker" name="11">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="70,210,237,255"/>
+              <prop k="color" v="215,181,66,255"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
@@ -1389,6 +1389,48 @@ def my_form_open(dialog, layer, feature):
             </layer>
           </symbol>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="12">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="152,216,103,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="13">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="94,31,202,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="2">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1428,7 +1470,28 @@ def my_form_open(dialog, layer, feature):
               <prop k="vertical_anchor_point" v="1"/>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="13">
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="3">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="0,0,0,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="rectangle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="0.4"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="4">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="229,229,229,255"/>
@@ -1449,7 +1512,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="vertical_anchor_point" v="1"/>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="2">
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="5">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="255,255,255,255"/>
@@ -1465,69 +1528,6 @@ def my_form_open(dialog, layer, feature):
               <prop k="outline_width_unit" v="MM"/>
               <prop k="scale_method" v="area"/>
               <prop k="size" v="1.2"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-            </layer>
-          </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="3">
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="223,33,112,255"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
-              <prop k="size" v="2"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-            </layer>
-          </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="4">
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="59,64,231,255"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
-              <prop k="size" v="2"/>
-              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
-            </layer>
-          </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="marker" name="5">
-            <layer pass="0" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="29,214,171,255"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0"/>
-              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
-              <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -1557,9 +1557,9 @@ def my_form_open(dialog, layer, feature):
           <symbol alpha="1" clip_to_extent="1" type="marker" name="7">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="215,181,66,255"/>
+              <prop k="color" v="108,160,105,255"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
+              <prop k="name" v="rectangle"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -1568,7 +1568,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="outline_width" v="0"/>
               <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
+              <prop k="scale_method" v="area"/>
               <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="size_unit" v="MM"/>
@@ -1578,7 +1578,7 @@ def my_form_open(dialog, layer, feature):
           <symbol alpha="1" clip_to_extent="1" type="marker" name="8">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="152,216,103,255"/>
+              <prop k="color" v="223,33,112,255"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
@@ -1599,7 +1599,7 @@ def my_form_open(dialog, layer, feature):
           <symbol alpha="1" clip_to_extent="1" type="marker" name="9">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
-              <prop k="color" v="94,31,202,255"/>
+              <prop k="color" v="59,64,231,255"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
@@ -1667,6 +1667,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Pie">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
@@ -1704,8 +1705,14 @@ def my_form_open(dialog, layer, feature):
   </projectlayers>
   <properties>
     <Variables>
-      <variableNames type="QStringList"/>
-      <variableValues type="QStringList"/>
+      <variableNames type="QStringList">
+        <value>hamlets_level</value>
+        <value>villages_level</value>
+      </variableNames>
+      <variableValues type="QStringList">
+        <value>200000</value>
+        <value>400000</value>
+      </variableValues>
     </Variables>
     <WMSContactPerson type="QString"></WMSContactPerson>
     <WMSOnlineResource type="QString"></WMSOnlineResource>
@@ -1727,8 +1734,8 @@ def my_form_open(dialog, layer, feature):
       <DegreeFormat type="QString">MU</DegreeFormat>
     </PositionPrecision>
     <WCSUrl type="QString"></WCSUrl>
-    <WMSContactPhone type="QString"></WMSContactPhone>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+    <WMSContactPhone type="QString"></WMSContactPhone>
     <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <WMSContactPosition type="QString"></WMSContactPosition>
     <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
