@@ -25,10 +25,10 @@ Map {
   line-color:#A08070;
 }
 
-#railways_all {
+#railways {
   ::line {
     line-width: 1;
-    line-color: #777;
+    line-color: #000000;
   }
- 
 }
+
