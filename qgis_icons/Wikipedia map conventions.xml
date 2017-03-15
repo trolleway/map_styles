@@ -1,0 +1,141 @@
+<!DOCTYPE qgis_style>
+<qgis_style version="1">
+  <symbols>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Opposite groups Color 1">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="228,26,28,102"/>
+        <prop k="joinstyle" v="round"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="228,26,28,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Opposite groups Color 2">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="77,175,74,102"/>
+        <prop k="joinstyle" v="round"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="77,175,74,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Opposite groups Color 3">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="152,78,163,102"/>
+        <prop k="joinstyle" v="round"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="152,78,163,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Opposite groups Color 4">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="255,127,0,102"/>
+        <prop k="joinstyle" v="round"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="255,127,0,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Opposite groups Color 5">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="55,126,184,102"/>
+        <prop k="joinstyle" v="round"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="55,126,184,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Opposite groups Color 6">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="255,255,51,102"/>
+        <prop k="joinstyle" v="bevel"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="255,255,51,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Opposite groups Color 7">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="166,86,40,102"/>
+        <prop k="joinstyle" v="bevel"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="166,86,40,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Wikipedia Location maps Other areas part of the same political unity">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="246,225,185,255"/>
+        <prop k="joinstyle" v="round"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="100,100,100,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+    <symbol alpha="1" clip_to_extent="1" type="fill" name="Wikipedia Location maps Subject's area (country, province)">
+      <layer pass="0" class="SimpleFill" locked="0">
+        <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="color" v="254,254,233,255"/>
+        <prop k="joinstyle" v="round"/>
+        <prop k="offset" v="0,0"/>
+        <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+        <prop k="offset_unit" v="MM"/>
+        <prop k="outline_color" v="100,100,100,255"/>
+        <prop k="outline_style" v="solid"/>
+        <prop k="outline_width" v="0.26"/>
+        <prop k="outline_width_unit" v="MM"/>
+        <prop k="style" v="solid"/>
+      </layer>
+    </symbol>
+  </symbols>
+  <colorramps/>
+</qgis_style>
