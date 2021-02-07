@@ -48,7 +48,7 @@ features
 	railway station : railway=station
 
 	points
-
+		gps waypoints : gpswaypoint[]
 
 	lines
 
@@ -59,24 +59,45 @@ features
 		road 2 : @isOneOf(highway,primary,secondary)
 		//road minor : @isOneOf(highway,residential,unclassified,living_street,construction,service)
 
-		railway : railway=rail AND service != yard AND service != siding
+		railway : railway=rail AND service != yard AND service != siding AND service != spur
+		railway minor : railway=rail AND service = spur
 
 	areas
 
 		land main subject: admin_level=7 AND "name:en" = "Kyoto"
 		residential : landuse=residential
+		build area : landuse=residential OR landuse=industrial OR landuse=commercial OR landuse=retail
 		water : natural=water OR waterway=riverbank OR landuse=reservoir OR landuse=basin
 		//land main subject: "name:en"="Arashiyama Park" OR "name:en"="Kyoto Prefecture"
 
 
 properties
 	curved : true
-	text-halo-width : 30%
-	text-halo-opacity : 0.75
-	map-background-color : #F6E1B9 
+	text-halo-width : 10%
+	//text-halo-opacity : 0.75
+	text-halo-color : #F6E1B9
+	// map-background-color : #F6E1B9  bold
+	map-background-color : #E7E7D0 
 	//fefee9
 
 rules
+
+	target : gps waypoints
+		define
+			shape : circle
+			shape-size : 4
+			line-color : brown
+			fill-opacity : 0
+		
+		draw : shape
+		define
+			text-align-vertical : far
+			text-align-horizontal : near
+			text-offset-vertical : 100%
+			text-offset-horizontal : 100%
+			font-weight : bold
+			font-size : 12
+		draw : shield
 
 	target : place
 		for : place=city
@@ -113,6 +134,11 @@ rules
 	target : railway
 		define
 			line-width : 9:1;10:2;13:2;14:3
+		draw : line	
+		
+	target : railway minor
+		define
+			line-width : 9:0.5;10:0.8;13:0.9;14:1
 		draw : line
 		
 	target : road *
@@ -177,6 +203,13 @@ rules
 			text-color : #78C1C1 black 10%
 		draw : text
 
+		
+	target : build area
+		define
+			line-style : none
+			line-width : 1
+			fill-color : #F1C973 white 10%
+		draw : fill
 
 
 	target : land main subject
