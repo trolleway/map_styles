@@ -1,0 +1,221 @@
+// Maperitive rendering ruleset for hiking maps. The map style resembles
+// that of paper hiking maps produced by Alpine Association of Slovenia (http://www.pzs.si/).
+// http://maperitive.net
+
+// Created by Igor Brejc
+// Released under the Creative Commons Attribution-ShareAlike 3.0 License (http://creativecommons.org/licenses/by-sa/3.0/)
+// Icons used: Map icons CC-0 from SJJB Management (http://www.sjjb.co.uk/mapicons)
+
+// History:
+// --------
+// 2011-11-26: Updated by Igor Brejc
+//		- made a finer distinction between major and minor contour lines (now that Maperitive supports subpixel accuracy)
+// 2011-09-20: Updated by Igor Brejc
+//		- turned off forest texture
+//		- moved alpine hut in front of peaks
+//		- added rendering of living_street, highway=construction and (railway|public_transport)=platform
+//		- added special rendering for tunnels
+
+// TODO (stuff still missing, will be added soon)
+// join all hiking paths
+// natural reserve
+// bus stop "icons/SJJB/png/transport_bus_stop.glow.32.png"
+// parking "icons/SJJB/png/transport_parking.n.32.png"
+// hunting stand
+// viewpoint "icons/SJJB/png/tourist_view_point.p.32.png"
+// hiking routes (SLO)
+// surface unpaved
+// marsh
+// border
+// tower
+// quarry
+// ruins
+// church - icon
+// camping
+// mountain hut
+// barrier
+// ditch
+// bench
+// information table
+// guidepost
+
+features
+	church : amenity=place_of_worship AND (religion=christian OR religion=Christian)
+	food : amenity=restaurant OR amenity=fast_food OR tourism=guest_house
+	alpine hut : tourism=alpine_hut
+	shelter : amenity=shelter
+	//place : node[place OR landuse=farmyard] area[place OR landuse=farmyard]
+	railway station : railway=station
+
+	points
+		gps waypoints : gpswaypoint[]
+
+	lines
+
+
+		//road major : @isOneOf(highway,motorway,motorway_link,trunk,trunk_link,primary,primary_link,secondary,secondary_link,tertiary)
+		road freeway : @isOneOf(highway,motorway,motorway)
+		road major : @isOneOf(highway,trunk,trunk)
+		road 2 : @isOneOf(highway,primary,secondary)
+		//road minor : @isOneOf(highway,residential,unclassified,living_street,construction,service)
+
+		railway : railway=rail AND service != yard AND service != siding AND service != spur
+		railway minor : railway=rail AND service = spur
+
+	areas
+
+		land main subject: admin_level=7 AND "name:en" = "Kyoto"
+		residential : landuse=residential
+		build area : landuse=residential OR landuse=industrial OR landuse=commercial OR landuse=retail
+		water : natural=water OR waterway=riverbank OR landuse=reservoir OR landuse=basin
+		//land main subject: "name:en"="Arashiyama Park" OR "name:en"="Kyoto Prefecture"
+
+
+properties
+	curved : true
+	text-halo-width : 10%
+	//text-halo-opacity : 0.75
+	text-halo-color : #F6E1B9
+	// map-background-color : #F6E1B9  bold
+	map-background-color : #E7E7D0 
+	//fefee9
+
+rules
+
+	target : gps waypoints
+		define
+			shape : circle
+			shape-size : 4
+			line-color : brown
+			fill-opacity : 0
+		
+		draw : shape
+		define
+			text-align-vertical : far
+			text-align-horizontal : near
+			text-offset-vertical : 100%
+			text-offset-horizontal : 100%
+			font-weight : bold
+			font-size : 12
+		draw : shield
+
+	target : place
+		for : place=city
+			define
+				min-zoom : 8
+				max-zoom : 14
+				font-size : 8:12;10:16;14:20
+		elsefor : place=town
+			define
+				min-zoom : 10
+				font-size : 10:12;16:20
+		elsefor : place=village
+			define
+				min-zoom : 13
+				font-size : 13:10;16:20
+		elsefor : place=hamlet
+			define
+				min-zoom : 14.5
+				font-size : 14.5:10;16:16
+		elsefor : place=farm OR landuse=farmyard
+			define
+				min-zoom : 15
+				font-size : 15:8;16:14
+		else
+			stop
+		define
+			font-weight : bold
+			text : @up([[name]]) "\n" @up([[name:en]])
+		draw : text
+
+		
+		
+		
+	target : railway
+		define
+			line-width : 9:1;10:2;13:2;14:3
+		draw : line	
+		
+	target : railway minor
+		define
+			line-width : 9:0.5;10:0.8;13:0.9;14:1
+		draw : line
+		
+	target : road *
+		if : road freeway
+			define
+				min-zoom : 10
+				line-color : #FFE400
+				line-width : 10:0.5;13:2;14:2;16:3
+				border-style : solid
+				border-color : #FF4800
+				border-width : 80%
+				border-opacity : 0.8
+			draw : line
+		elseif : road major
+			define
+				min-zoom : 10
+				line-color : #FF4800
+				line-width : 10:0.5;13:2;14:2;16:3
+				border-style : solid
+				border-color : black
+				border-width : 80%
+				border-opacity : 1
+			draw : line			
+		elseif : road 2
+			define
+				min-zoom : 10
+				line-color : #FF4800
+				line-width : 10:0.5;13:2;14:2;16:3
+				border-style : solid
+				border-color : black
+				border-width : 80%
+				border-opacity : 0
+			draw : line
+		else
+			define
+				min-zoom : 14
+				line-color : white
+
+
+	target : road minor
+		define
+			min-zoom : 10
+			max-zoom : 14
+			line-color : black
+			line-width : 1
+			border-style : none
+		draw : line
+		
+	target : water
+		define
+			line-style : none
+			line-width : 1
+			fill-color : #C6ECFF white 10%
+		draw : fill
+		define
+			min-zoom : 15
+			font-size : 15:10;17:17
+			
+			
+			font-style : italic
+			font-weight : bold
+			text-color : #78C1C1 black 10%
+		draw : text
+
+		
+	target : build area
+		define
+			line-style : none
+			line-width : 1
+			fill-color : #F1C973 white 10%
+		draw : fill
+
+
+	target : land main subject
+		define
+			line-style : solid
+			line-width : 0.5
+			line-color : #888888
+			fill-color : #fefee9
+		draw : fill		
