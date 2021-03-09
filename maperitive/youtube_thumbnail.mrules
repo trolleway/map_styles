@@ -48,7 +48,7 @@ features
 		forest : landuse=forest OR natural=wood
 		farm : landuse=farm
 		farmyard:landuse=farmyard
-		grass : landuse=grass
+		//grass : landuse=grass
 		fell : natural=fell
 		glacier : natural=glacier
 		national park : boundary=national_park
@@ -62,9 +62,9 @@ features
 		graveyard : amenity=grave_yard OR landuse=cemetery
 		military : landuse=military OR military=barracks
 		park : leisure=park
-		leisure garden : leisure=garden
-		leisure pitch : leisure=pitch
-		leisure stadium : leisure=stadium
+		//leisure garden : leisure=garden
+		//leisure pitch : leisure=pitch
+		//leisure stadium : leisure=stadium
 		landuse retail : landuse=retail
 		landuse industrial : landuse=industrial
 		commercial area : landuse=commercial
@@ -100,7 +100,7 @@ features
 		highway residential : highway=residential OR (highway=construction AND construction=residential)
 		highway living_street : highway=living_street OR (highway=construction AND construction=living_street)
 		highway construction : highway=construction
-		highway service : highway=service AND NOT access=private
+		//highway service : highway=service AND NOT access=private
 		highway pedestrian : highway=pedestrian
 		highway track : highway=track
 		//highway footway : highway=footway
@@ -337,7 +337,7 @@ rules
 				line-style : solid
 		elseif : residential area
 			define
-				fill-color : #DCDCDC
+				fill-color : #fec44f
 		elseif : grass
 			define
 				fill-color : #CFECA8
