@@ -87,7 +87,7 @@ features
 		railway rail : railway=rail
 		railway lightrail : railway=light_rail
 		//platform : railway=platform OR public_transport=platform
-		line barrier : barrier=wall OR barrier=fence
+		//line barrier : barrier=wall OR barrier=fence
 		highway motorway : highway=motorway OR (highway=construction AND construction=motorway)
 		highway motorway link : highway=motorway_link OR (highway=construction AND construction=motorway_link)
 		highway trunk : highway=trunk OR (highway=construction AND construction=trunk)
@@ -710,7 +710,7 @@ rules
 				text-align-horizontal : center
 				text-align-vertical : center
 				text : ref
-				font-size : 12
+				font-size : 25
 				text-color : #fcfcfb
 				text-halo-width : 0
 				shape : custom
@@ -756,6 +756,7 @@ rules
 				border-style : none
 			draw : line
 			define
+				font-size : 25
 				min-zoom : 13
 				max-zoom : 20
 			draw : text
@@ -781,6 +782,7 @@ rules
 				border-style : none
 			draw : line
 			define
+				font-size : 25
 				min-zoom : 13
 				max-zoom : 20
 			draw : text
@@ -806,6 +808,7 @@ rules
 				border-style : none
 			draw : line
 			define
+				font-size : 25
 				min-zoom : 15
 				max-zoom : 20
 			draw : text
@@ -865,6 +868,7 @@ rules
 				line-color : white black 25%
 			draw : line
 			define
+				
 				min-zoom : 15
 				max-zoom : 20
 			draw : text
