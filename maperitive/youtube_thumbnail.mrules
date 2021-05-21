@@ -112,9 +112,9 @@ features
 		pier : man_made=pier
 		//bridge foot : bridge=yes AND (foot=yes OR highway=footway)
 		historic citywalls : historic=citywalls OR historic=city_wall
-		power_line : power=line OR power=minor_line
-		aerialway closed: @isOneOf(aerialway,cable_car,gondola,mixed_lift)
-		aerialway open: @isOneOf(aerialway,chair_lift,drag_lift)
+		//power_line : power=line OR power=minor_line
+		//aerialway closed: @isOneOf(aerialway,cable_car,gondola,mixed_lift)
+		//aerialway open: @isOneOf(aerialway,chair_lift,drag_lift)
 
 		aeroway runway : aeroway=runway
 		aeroway taxiway : aeroway=taxiway
@@ -151,7 +151,7 @@ features
 		cafe : amenity=cafe
 		pharmacy : amenity=pharmacy
 		peak : natural=peak
-		powertower : power=tower OR power=pole
+		//powertower : power=tower OR power=pole
 		info : information=guidepost
 		bollard : barrier=bollard
 		lift_gate : barrier=lift_gate
