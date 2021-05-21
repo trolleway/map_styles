@@ -102,7 +102,7 @@ features
 		highway construction : highway=construction
 		//highway service : highway=service AND NOT access=private
 		highway pedestrian : highway=pedestrian
-		highway track : highway=track
+		//highway track : highway=track
 		//highway footway : highway=footway
 		highway cycleway : highway=cycleway
 		//highway path : highway=path
