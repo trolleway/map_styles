@@ -1,0 +1,708 @@
+// Maperitive style for medium scale city map
+// Brown-red color pallete from https://commons.wikimedia.org/wiki/File:K%C3%B6nigsberg_Stadtplan_1905.svg
+features
+
+	points, lines
+		ford : highway = ford
+	points, areas
+		telephone : amenity=telephone
+		drinking water : amenity=drinking_water
+		fast_food : amenity=fast_food
+		cafe : amenity=cafe
+		shop food : shop=convenience OR shop=supermarket OR shop=mall
+		services : highway=services OR shop=car_repair
+		ford : highway=ford
+		fuel : amenity=fuel
+		motel : tourism=motel OR tourism=hotel
+		railway station : railway=station OR railway=halt
+
+	areas
+		water : natural=water OR waterway=riverbank OR landuse=reservoir OR landuse=basin
+		village green : landuse=village_green
+		forest : landuse=forest OR natural=wood OR leisure=park OR landuse=cemetery
+		farm : landuse=farm OR landuse=farmland
+		grass : landuse=grass OR landuse=recreation_ground OR natural=heath OR natural=scrub
+		fell : natural=fell
+		glacier : natural=glacier
+		national park : boundary=national_park
+		allotments : landuse=allotments
+		academic : node[@isOneOf(amenity, university, college, school)] area[@isOneOf(amenity, university, college, school)]
+		meadow : natural=meadow OR landuse=meadow
+		nature reserve : leisure=nature_reserve
+		track : leisure=track
+		graveyard : amenity=grave_yard OR landuse=cemetery
+		military : landuse=military OR military=barracks 
+		park : leisure=park
+		leisure garden : leisure=garden
+		leisure pitch : leisure=pitch
+		leisure stadium : leisure=stadium
+		landuse retail : landuse=retail
+		landuse industrial : landuse=industrial OR landuse=military OR power=generator OR aeroway=aerodrome
+		landuse garages : landuse=garages
+		commercial area : landuse=commercial
+		residential area : landuse=residential
+	lines
+		coastline : natural=coastline
+		river : waterway=river 
+		stream : waterway=stream
+		canal : waterway=canal
+		drain : waterway=drain
+		line barrier : barrier=wall OR barrier=fence
+		highway motorway : highway=motorway
+		highway trunk : highway=trunk
+		highway primary : highway=primary
+		highway secondary : highway=secondary
+		highway tertiary : highway=tertiary
+		highway unclassified : highway=unclassified
+		highway residential : highway=residential 
+//		highway pedestrian : highway=pedestrian
+//		highway track : highway=track
+//		highway path : highway=path
+
+
+		tram : railway=tram
+		railway : (railway=rail  OR railway=preserved0) and (NOT(service=siding) ) (NOT(service=spur) ) 
+		railway main: (railway=rail  OR railway=preserved0) AND (usage=main) 
+		railway siding : (railway=rail ) AND ( (service=spur) OR (service=siding) OR (service=yard))
+		railway abandoned : railway=abandoned AND NOT (gauge>750)
+		railway narrow : (railway=narrow_gauge OR railway=miniature OR gauge<1000) AND NOT(railway=abandoned)
+//		railway narrow closed: (railway=narrow_gauge OR gauge<1520) AND (railway=abandoned OR railway=disused)
+		brige : bridge=yes
+		
+//		bus_line : relation[route=bus]
+	points
+		//place city : place=city
+//		place town : place=town
+		place village : place=village
+		place hamlet : place=hamlet
+		place suburb : place=suburb
+		hospital : amenity=hospital
+		peak : natural=peak
+//		bus_stop : highway=bus_stop
+
+		gps tracks : gpstrack[]
+		gps routes : gpsroute[]
+
+properties
+	map-background-color	: #ffffff
+	map-background-opacity	: 1
+	font-family : Verdana
+	text-max-width : 7
+	text-align-horizontal : center
+	text-align-vertical : center
+	font-size : 16
+	text-color : #786C60
+	map.rendering.lflp.min-buffer-space : 5
+	map.rendering.lflp.max-allowed-corner-angle : 40
+	text-halo-width : 2
+	
+rules
+	target: gps tracks
+		define
+			line-color : #ffffff
+			line-width : 2
+			border-style : solid
+			border-color : black
+			border-width : 1
+		draw : line
+
+	target : $featuretype(point)
+		if : place*
+			define
+				font-weight : bold
+				text-color : black
+			if : *city
+				define
+					font-size : 28
+					min-zoom : 6
+					max-zoom : 15.1
+			elseif : *town
+				define
+					font-size : 20
+					min-zoom : 8
+					max-zoom : 15.1
+			elseif : *village
+				define
+					font-size : 14
+					min-zoom : 11
+					max-zoom : 15.1
+			elseif : *hamlet
+				define
+					font-size : 12
+					min-zoom : 11
+					max-zoom : 15.1
+			elseif : *suburb
+				define
+					font-size : 8
+					min-zoom : 11
+					max-zoom : 15.1
+					text-halo-width : 25%
+			draw : text
+
+	target : $featuretype(area)
+		define
+			line-style : none
+			line-width : 1
+		if : forest
+			define
+				min-zoom : 9
+				fill-color : #cccccc
+		elseif : beach
+			define
+				min-zoom : 10
+				fill-color : #eeeeee
+		elseif : farm
+			define
+				min-zoom : 9
+				fill-color : #eeeeee
+		elseif : fell
+			define
+				fill-color : #eeeeee
+		elseif : water
+			define
+				fill-color : #777777
+		elseif : residential area
+			define
+				min-zoom : 10
+				fill-color : #eeeeee
+				font-size : 12
+		elseif : grass
+			define
+				fill-color : #eeeeee
+		elseif : allotments
+			define
+				fill-color : #eeeeee
+
+		elseif : meadow
+			define
+				fill-color : #eeeeee
+		elseif : nature reserve
+			define
+				fill-color : #eeeeee
+		elseif : graveyard
+			define
+				fill-color : #eeeeee
+		elseif : village green
+			define
+				fill-color : #eeeeee
+		else
+			stop
+		draw : fill
+		define
+			min-zoom : 13
+			font-size : 9
+			font-stretch : 0.9
+			font-weight : bold
+			text-color : #786C60
+			text : name
+		//draw : text
+		
+	target : landuse industrial
+		define
+			line-color : #bbbbbb
+			line-width : 0.5
+		draw : line
+		define
+			fill-color : #FFFFFF
+			fill-hatch-color : #999999
+			fill-hatch : diagonalcross
+		draw : fill	
+		define
+			font-family : Arial black 
+			font-weight : bold
+			font-size : 8
+			font-stretch : 0.9
+			text-halo-width : 40%
+			text-color : black
+			
+
+			//text-line-spacing : 1
+			//text-line-spacing : 0.25
+		draw : text
+		
+		
+	target : railway
+		define
+			min-zoom : 6
+			line-color : #000
+			line-width : 3
+		draw : line
+		define
+			min-zoom : 6
+			max-zoom : 14
+			line-style : dashlong
+			line-color : white
+			line-width : 3
+			border-style : solid
+			border-color : #000
+			border-width : 25%
+		draw : line
+		define
+			text-line-spacing : 1
+			text-letter-spacing : 0.1
+			text-max-width : 50
+			text-offset-vertical : -6
+			font-weight : bold
+			font-style : italic
+			font-size : 9:7;10:16
+			text-color : blue
+//		draw : text
+
+	target : railway main
+		define
+			min-zoom : 6
+			line-color : #000
+			line-width : 8
+		draw : line
+		define
+			min-zoom : 6
+			max-zoom : 14
+			line-style : dashlong
+			line-color : white
+			line-width : 3
+			border-style : solid
+			border-color : #000
+			border-width : 25%
+		draw : line
+		
+	target : railway siding
+		define
+			min-zoom : 6
+			line-color : #000
+			line-width : 3
+		draw : line
+		define
+			min-zoom : 6
+			max-zoom : 14
+			line-style : dashlong
+			line-color : white
+			line-width : 3
+			border-style : solid
+			border-color : #000
+			border-width : 25%
+		//draw : line
+
+	target : railway narrow
+		define
+			min-zoom : 6
+			line-color : #000
+			line-width : 3
+		draw : line
+		define
+			line-width : 3
+			min-zoom : 12
+			shape-mode : linear
+			shape : custom
+			shape-def :  l: 0,-5; 0,5; m:8,0;
+			shape-spacing : 1
+//		draw : shape
+		define
+			text-line-spacing : 1.25
+			text-max-width : 50
+			text-offset-vertical : -6
+			font-weight : bold
+			font-style : italic
+			font-size : 9:7;10:9
+			text:[[name:ru]]
+		draw : text
+		
+	target : railway narrow closed
+		define
+			min-zoom : 6
+			line-color : gray
+			line-width : 3
+			line-style : dash
+		draw : line
+		define
+			min-zoom : 9
+			shape-mode : linear
+			shape : custom
+			shape-def :  0,-10; 0,10;
+			shape-spacing : 1
+		draw : shape	
+		define
+			min-zoom : 9
+			shape-mode : center
+			shape : custom
+			shape-def :  -50,-50; -20,-20; 20,-20; 50,-50
+		draw : shape
+		define
+			text-color : gray
+			text-line-spacing : 1.25
+			text-max-width : 50
+			text-offset-vertical : -6
+			font-weight : bold
+			font-style : italic
+			font-size : 9:7;10:9
+		draw : text		
+		
+	target : railway abandoned
+
+		define
+			min-zoom : 6
+			line-style : dash
+			line-color : black
+			line-width : 2
+			border-style : none
+			border-color : #000000
+			border-width : 50%
+			
+		draw : line
+		define
+			line-color: black
+			line-style: solid
+			line-width : 2
+			min-zoom : 9
+			shape-mode : linear
+			shape : custom
+			shape-def :  m:-8,3; l:-8,1;  m:-8,3; m:8,3; l:8,1;
+			shape-spacing : 0.0
+//		draw : shape
+		define
+			line-color: black
+			line-style: solid
+			line-width : 2
+			min-zoom : 9
+			shape-mode : linear
+			shape : custom
+			shape-def :  m:-8,-3; l:-8,-1;  m:-8,-3; m:8,-3; l:8,-1;
+			shape-spacing : 0.0
+//		draw : shape
+		define
+			min-zoom : 6
+			line-color : #ffffff
+			line-width : 5
+			curved : false
+//		draw : line		
+
+		
+	target : bus_stop
+		define
+			shape:circle
+			shape-size : 3
+			fill-color: #eeeeee
+		draw : shape	
+		define
+			text-line-spacing : 1.25
+			text-max-width : 50
+			text-offset-horizontal : 0
+			font-weight : bold
+//			font-style : italic
+			font-size : 12:10;14:14
+			text-align-horizontal : far
+			text-color : black
+		draw : text
+	target : bus_line
+		define
+			line-color : black
+			line-width : 8
+			curved : true
+		draw : line
+		define
+			line-color : yellow
+			line-width : 2
+			curved : true
+		draw : line
+
+
+	target : highway*
+		if : *motorway 
+			define
+				min-zoom : 14
+				font-size : 11
+				font-stretch : 0.9
+				font-weight : bold
+				text-color : #000000
+				text : name
+			draw : text
+		elseif : *trunk
+			define
+				min-zoom : 14
+				font-size : 11
+				font-stretch : 0.9
+				font-weight : bold
+				text-color : #000000
+				text : name
+			draw : text		
+		elseif : *primary
+			define
+				min-zoom : 14
+				font-size : 11
+				font-stretch : 0.9
+				font-weight : bold
+				text-color : #000000
+				text : name
+			draw : text		
+		elseif : *secondary
+			define
+				min-zoom : 14
+				font-size : 11
+				font-stretch : 0.9
+				font-weight : bold
+				text-color : #000000
+				text : name
+			draw : text
+			
+			
+			stop
+		
+	target : highway*
+		define
+			line-style : solid
+			line-join : round
+			line-start-cap : round
+			line-end-cap : round
+		if : *motorway 
+			define
+				min-zoom : 10
+				line-color : #bbbbbb
+				line-width : 6
+				border-style : solid
+				border-color : black
+				border-width : 2
+			draw : line
+			define
+				font-family : Tahoma
+				text-align-horizontal : center
+				text-align-vertical : center
+				text : ref
+				font-size : 12
+				text-color : #000000
+				text-halo-width : 0
+				shape : custom
+				shape-def : p:#ffffff;pw:5;f:#ffffff;m:-10,-10;l:10,-10;a:10,10,10,10;l:-10,10;a:10,10,-10,-10;z;p:#000000;pw:2;m:-10,-10;l:10,-10;a:10,10,10,10;l:-10,10;a:10,10,-10,-10;z
+				shield-padding-left : 5
+				shield-padding-right : 5
+				shield-padding-top : 7
+				shield-padding-bottom : 7
+				shield-resize-mode : free
+			draw : shield
+		elseif : *trunk
+			define
+				min-zoom : 10
+				line-color : #bbbbbb
+				line-width : 6
+				border-style : solid
+				border-color : black
+				border-width : 2
+			draw : line
+			define
+				font-family : Tahoma
+				text-align-horizontal : center
+				text-align-vertical : center
+				text : ref
+				font-size : 12
+				text-color : #000000
+				text-halo-width : 0
+				shape : custom
+				shape-def : p:#ffffff;pw:5;f:#ffffff;m:-10,-10;l:10,-10;a:10,10,10,10;l:-10,10;a:10,10,-10,-10;z;p:#000000;pw:2;m:-10,-10;l:10,-10;a:10,10,10,10;l:-10,10;a:10,10,-10,-10;z
+				shield-padding-left : 5
+				shield-padding-right : 5
+				shield-padding-top : 7
+				shield-padding-bottom : 7
+				shield-resize-mode : free
+			draw : shield
+		elseif : *primary
+			define
+				min-zoom : 10
+				line-color : #bbbbbb
+				line-width : 6
+				border-style : solid
+				border-color : black
+				border-width : 2
+			draw : line
+			define
+				font-family : Tahoma
+				text-align-horizontal : center
+				text-align-vertical : center
+				text : ref
+				font-size : 12
+				text-color : #000000
+				text-halo-width : 0
+				shape : custom
+				shape-def : p:#ffffff;pw:5;f:#ffffff;m:-10,-10;l:10,-10;a:10,10,10,10;l:-10,10;a:10,10,-10,-10;z;p:#000000;pw:2;m:-10,-10;l:10,-10;a:10,10,10,10;l:-10,10;a:10,10,-10,-10;z
+				shield-padding-left : 5
+				shield-padding-right : 5
+				shield-padding-top : 7
+				shield-padding-bottom : 7
+				shield-resize-mode : free
+			draw : shield
+		elseif : *secondary
+			define
+				min-zoom : 10
+				line-color : #bbbbbb
+				line-width : 6
+				border-style : solid
+				border-color : black
+				border-width : 2
+			draw : line
+			define
+				font-family : Tahoma
+				text-align-horizontal : center
+				text-align-vertical : center
+				text : ref
+				font-size : 12
+				text-color : #000000
+				text-halo-width : 0
+				shape : custom
+				shape-def : p:#ffffff;pw:5;f:#ffffff;m:-10,-10;l:10,-10;a:10,10,10,10;l:-10,10;a:10,10,-10,-10;z;p:#000000;pw:2;m:-10,-10;l:10,-10;a:10,10,10,10;l:-10,10;a:10,10,-10,-10;z
+				shield-padding-left : 5
+				shield-padding-right : 5
+				shield-padding-top : 7
+				shield-padding-bottom : 7
+				shield-resize-mode : free
+			draw : shield
+		elseif : *tertiary
+			define
+				min-zoom : 10
+				line-color : white
+				line-width : 4
+				border-style : solid
+				border-color : black
+				border-width : 2
+
+			draw : line
+		elseif : *pedestrian
+			define
+				min-zoom : 10
+				line-color : white
+				line-width : 6
+				border-style : solid
+				border-color : black
+				border-width : 2
+			draw : line
+		elseif : $regex("(.*residential)|(.*unclassified)")
+			define
+				min-zoom : 14
+				line-color : white
+				line-width : 3
+			draw : line
+		elseif : *track
+			define
+				min-zoom : 13
+				line-color : black
+				line-width : 2
+				line-style : dash
+			draw : line
+		elseif : *path
+			define	
+				min-zoom : 13
+				line-color : black
+				line-width : 1
+				line-style : dash
+			draw : line
+		else
+			stop
+	target : river
+		define
+			line-color : #777777
+			line-width : 7:3;12:6
+		draw : line
+		define
+			min-zoom : 10
+			font-size : 11
+			font-stretch : 0.9
+			font-weight : bold
+			font-style : italic
+			text-color : #000000
+			text : name
+		draw : text
+	target : canal
+		define
+			min-zoom : 12
+			line-color : #777777
+			line-width : 2
+		draw : line
+	target : drain
+		define
+			min-zoom : 13
+			line-color : #777777
+			line-width : 2
+		draw : line		
+	target : stream
+		define
+			min-zoom : 13
+			line-color : #777777
+			line-width : 2
+		draw : line
+	target: coastline
+		define
+			line-color : #777777
+			line-width : 2
+		draw : line
+
+	target : ford
+		define
+			shape-orientation: fixed
+			shape-mode : center
+			shape-size : 8
+			icon-image : icons/mapicons/ford_bw.png
+		draw : icon
+		
+		
+	target : drinking water
+		define
+			icon-image : icons/catlas/food_drinkingtap.glow.bw.32.png
+			min-zoom : 12
+			icon-width : 16
+		draw : icon
+	target : cafe
+		define
+			icon-image : icons/catlas/food_cafe.glow.bw.32.png
+			min-zoom : 12
+			icon-width : 16
+		draw : icon
+	target : shop food
+		define
+			icon-image : icons/catlas/shopping_supermarket.glow.bw.32.png
+			min-zoom : 12
+			icon-width : 16
+		draw : icon
+	target : fuel
+		define
+			icon-image : icons/catlas/transport_fuel.glow.bw.32.png
+			min-zoom : 12
+			icon-width : 24
+		draw : icon
+	target : telephone
+		define
+			icon-image : icons/catlas/amenity_telephone.glow.bw.32.png
+			min-zoom : 12
+			icon-width : 16
+		draw : icon
+	target : services
+		define
+			icon-image : icons/catlas/shopping_car_repair.glow.bw.32.png
+			min-zoom : 12
+			icon-width : 24
+		draw : icon
+	target : fast_food
+		define
+			icon-image : icons/catlas/food_fastfood.glow.bw.32.png
+			min-zoom : 12
+			icon-width : 16
+		draw : icon
+	target : motel
+		define
+			icon-image : icons/catlas/accommodation_hotel2.glow.bw.32.png
+			min-zoom : 12
+			icon-width : 32
+		draw : icon	
+	target : railway station
+		define
+			shape : custom
+			shape-size : 15
+			shape-def : p:black;pw:2;f:white;m:-9,-5;l:8,-5;l:8,9;l:-9,9;l:-9,-5;z;f:black;m:-3,9;l:3,9;l:3,0;l:-3,0;l:-3,9;z
+		draw : shape
+		define
+			font-family : Arial black 
+			font-weight : bold
+			font-size : 8
+			font-stretch : 0.9
+			text-halo-width : 40%
+			text-color : black
+			text-offset-vertical : -170%
+			text-offset-horizontal : 300%
+		draw : text
+		
+		
