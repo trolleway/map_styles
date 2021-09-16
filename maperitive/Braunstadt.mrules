@@ -30,17 +30,19 @@ features
 		meadow : natural=meadow OR landuse=meadow
 		nature reserve : leisure=nature_reserve
 		track : leisure=track
-		graveyard : amenity=grave_yard OR landuse=cemetery
-		military : landuse=military OR military=barracks 
-		park : leisure=park
-		leisure garden : leisure=garden
-		leisure pitch : leisure=pitch
-		leisure stadium : leisure=stadium
-		landuse retail : landuse=retail
-		landuse industrial : landuse=industrial OR landuse=military OR power=generator OR aeroway=aerodrome
-		landuse garages : landuse=garages
-		commercial area : landuse=commercial
+//		graveyard : amenity=grave_yard OR landuse=cemetery
+//		military : landuse=military OR military=barracks 
+//		park : leisure=park
+//		leisure garden : leisure=garden
+//		leisure pitch : leisure=pitch
+//		leisure stadium : leisure=stadium
+//		landuse retail : landuse=retail
+//		landuse industrial : landuse=industrial OR landuse=military OR power=generator OR aeroway=aerodrome
+//		landuse garages : landuse=garages
+//		commercial area : landuse=commercial
 		residential area : landuse=residential
+		specbuilidng : building=office OR building=train_station OR building=institute OR building=public OR building=office
+		
 	lines
 		coastline : natural=coastline
 		river : waterway=river 
@@ -48,13 +50,13 @@ features
 		canal : waterway=canal
 		drain : waterway=drain
 		line barrier : barrier=wall OR barrier=fence
-		highway motorway : highway=motorway
-		highway trunk : highway=trunk
-		highway primary : highway=primary
-		highway secondary : highway=secondary
-		highway tertiary : highway=tertiary
-		highway unclassified : highway=unclassified
-		highway residential : highway=residential 
+//		highway motorway : highway=motorway
+//		highway trunk : highway=trunk
+//		highway primary : highway=primary
+//		highway secondary : highway=secondary
+//		highway tertiary : highway=tertiary
+//		highway unclassified : highway=unclassified
+//		highway residential : highway=residential 
 //		highway pedestrian : highway=pedestrian
 //		highway track : highway=track
 //		highway path : highway=path
@@ -139,6 +141,23 @@ rules
 					text-halo-width : 25%
 			draw : text
 
+	target : specbuilidng
+		define
+			line-width : 0
+			line-opacity : 0
+		draw : line
+		define
+			fill-color : #E77758
+		draw : fill
+		define
+			font-family : Arial black 
+			font-weight : bold
+			font-size : 8
+			font-stretch : 0.9
+			text-halo-width : 0%
+			text-color : black
+
+		draw : text			
 	target : $featuretype(area)
 		define
 			line-style : none
@@ -160,11 +179,11 @@ rules
 				fill-color : #eeeeee
 		elseif : water
 			define
-				fill-color : #777777
+				fill-color : #73C6D2
 		elseif : residential area
 			define
 				min-zoom : 10
-				fill-color : #eeeeee
+				fill-color : #F2C4A2
 				font-size : 12
 		elseif : grass
 			define
@@ -196,6 +215,11 @@ rules
 			text-color : #786C60
 			text : name
 		//draw : text
+	target : water
+		define
+			line-color : #2371b3
+			line-width : 1
+		draw : line			
 		
 	target : landuse industrial
 		define
