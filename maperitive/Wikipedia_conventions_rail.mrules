@@ -56,7 +56,7 @@ features
 		//road major : @isOneOf(highway,motorway,motorway_link,trunk,trunk_link,primary,primary_link,secondary,secondary_link,tertiary)
 		road freeway : @isOneOf(highway,motorway,motorway)
 		road major : @isOneOf(highway,trunk,trunk)
-		road 2 : @isOneOf(highway,primary,secondary)
+		road 2 : @isOneOf(highway,primary,secondary,tertiary)
 		//road minor : @isOneOf(highway,residential,unclassified,living_street,construction,service)
 
 		railway : railway=rail AND service != yard AND service != siding AND service != spur
