@@ -26,3 +26,32 @@ Maperitive style for walking papers print on black-white printer.
 Based on defatult style.
 Optimized for Moscow tagging features.
 ![sample map cropped](http://farm4.staticflickr.com/3751/10569984364_8941306668_c.jpg)
+
+## Overpass query for medium-scale maps
+```
+[out:json][timeout:55];
+// gather results
+(
+  // query part for: “highway=*”
+
+  way["highway"="motorway"]({{bbox}});
+  way["highway"="trunk"]({{bbox}});
+  way["highway"="primary"]({{bbox}});
+  way["highway"="secondary"]({{bbox}});
+  way["highway"="tertiary"]({{bbox}});
+  way["highway"="unclassified"]({{bbox}});
+  way["highway"="residential"]({{bbox}});
+  // query part for: “landuse=*”
+
+  way["landuse"]({{bbox}});
+  relation["landuse"]({{bbox}});
+  // query part for: “railway=*”
+  node["railway"]({{bbox}});
+  way["railway"]({{bbox}});
+
+);
+// print results
+out body;
+>;
+out skel qt;
+```
