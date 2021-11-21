@@ -29,7 +29,7 @@ Optimized for Moscow tagging features.
 
 ## Overpass query for medium-scale maps
 ```
-[out:json][timeout:55];
+[out:xml][timeout:55];
 // gather results
 (
   // query part for: “highway=*”
