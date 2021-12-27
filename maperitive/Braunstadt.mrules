@@ -19,13 +19,13 @@ features
 	areas
 		water : natural=water OR waterway=riverbank OR landuse=reservoir OR landuse=basin
 		village green : landuse=village_green
-		forest : landuse=forest OR natural=wood OR leisure=park OR landuse=cemetery
+		forest : landuse=forest OR natural=wood 
 		farm : landuse=farm OR landuse=farmland
-		grass : landuse=grass OR landuse=recreation_ground OR natural=heath OR natural=scrub
+//		grass : landuse=grass OR landuse=recreation_ground OR natural=heath OR natural=scrub
 		fell : natural=fell
 		glacier : natural=glacier
 		national park : boundary=national_park
-		allotments : landuse=allotments
+//		allotments : landuse=allotments
 		academic : node[@isOneOf(amenity, university, college, school)] area[@isOneOf(amenity, university, college, school)]
 		meadow : natural=meadow OR landuse=meadow
 		nature reserve : leisure=nature_reserve
@@ -40,8 +40,8 @@ features
 //		landuse industrial : landuse=industrial OR landuse=military OR power=generator OR aeroway=aerodrome
 //		landuse garages : landuse=garages
 //		commercial area : landuse=commercial
-		residential area : landuse=residential
-		specbuilidng : building=office OR building=train_station OR building=institute OR building=public OR building=office
+		residential area : landuse=residential OR landuse=allotments OR landuse=commercial OR landuse=retail OR landuse=industrial
+		specbuilidng : @isOneOf(building, university, office,train_station,institute,public,retailgovernment) OR (building=yes AND amenity=community_centre) OR @isOneOf(building:material, brick,stone, masonry)
 		
 	lines
 		coastline : natural=coastline
@@ -63,9 +63,9 @@ features
 
 
 		tram : railway=tram
-		railway : (railway=rail  OR railway=preserved0) and (NOT(service=siding) ) (NOT(service=spur) ) 
+//		railway : (railway=rail  OR railway=preserved0) and (NOT(service=siding) ) (NOT(service=spur) ) 
 		railway main: (railway=rail  OR railway=preserved0) AND (usage=main) 
-		railway siding : (railway=rail ) AND ( (service=spur) OR (service=siding) OR (service=yard))
+		railway siding : (railway=rail ) AND ( (service=spur) )
 		railway abandoned : railway=abandoned AND NOT (gauge>750)
 		railway narrow : (railway=narrow_gauge OR railway=miniature OR gauge<1000) AND NOT(railway=abandoned)
 //		railway narrow closed: (railway=narrow_gauge OR gauge<1520) AND (railway=abandoned OR railway=disused)
@@ -86,23 +86,23 @@ features
 		gps routes : gpsroute[]
 
 properties
-	map-background-color	: #ffffff
+	map-background-color	: #f5f5dc
 	map-background-opacity	: 1
 	font-family : Verdana
 	text-max-width : 7
 	text-align-horizontal : center
 	text-align-vertical : center
-	font-size : 16
-	text-color : #786C60
-	map.rendering.lflp.min-buffer-space : 5
-	map.rendering.lflp.max-allowed-corner-angle : 40
-	text-halo-width : 2
+//	font-size : 16
+//	text-color : #786C60
+//	map.rendering.lflp.min-buffer-space : 5
+//	map.rendering.lflp.max-allowed-corner-angle : 40
+//	text-halo-width : 2
 	
 rules
 	target: gps tracks
 		define
-			line-color : #ffffff
-			line-width : 2
+			line-color : #ff0000
+			line-width : 4
 			border-style : solid
 			border-color : black
 			border-width : 1
@@ -165,7 +165,7 @@ rules
 		if : forest
 			define
 				min-zoom : 9
-				fill-color : #cccccc
+				fill-color : #d3d8a9
 		elseif : beach
 			define
 				min-zoom : 10
@@ -249,14 +249,14 @@ rules
 		define
 			min-zoom : 6
 			line-color : #000
-			line-width : 3
+			line-width : 1
 		draw : line
 		define
 			min-zoom : 6
 			max-zoom : 14
 			line-style : dashlong
 			line-color : white
-			line-width : 3
+			line-width : 0.5
 			border-style : solid
 			border-color : #000
 			border-width : 25%
@@ -276,14 +276,14 @@ rules
 		define
 			min-zoom : 6
 			line-color : #000
-			line-width : 8
+			line-width : 1
 		draw : line
 		define
 			min-zoom : 6
 			max-zoom : 14
 			line-style : dashlong
 			line-color : white
-			line-width : 3
+			line-width : 1
 			border-style : solid
 			border-color : #000
 			border-width : 25%
@@ -293,7 +293,7 @@ rules
 		define
 			min-zoom : 6
 			line-color : #000
-			line-width : 3
+			line-width : 1
 		draw : line
 		define
 			min-zoom : 6
