@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<presets xmlns="http://josm.openstreetmap.de/tagging-preset-1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://josm.openstreetmap.de/tagging-preset-1.0 tagging-preset.xsd"
+  author="literan and others"
+  version="2.0_2022-12-04_1"
+  link="https://github.com/ruosm-presets/literan-moscow"
+  icon="https://upload.wikimedia.org/wikipedia/commons/d/db/Twemoji_1f1f7-1f1fa.svg"
+  shortdescription="Trolleway POIs"
+  description="Trolleway amenities"
+>
+
+ <item name="Church ruins"  type="closedway">
+    <key key="building" value="church" />
+    <key key="was:amenity" value="place_of_worships" />
+    <key key="historic" value="church" />
+    <key key="religion" value="christian" />
+    <key key="denomination" value="russian_orthodox" />
+    <text key="name" text="Name:" default="Церковь" />
+</item>
+
+
+ <item name="Bell tower"  type="node,closedway">
+    <key key="man_made" value="tower" />
+    <key key="tower:type" value="bell_tower" />
+    <text key="name" text="Name:" default="Колокольня" />
+
+</item>
+
+
+</presets>
