@@ -104,7 +104,7 @@ features
 		highway pedestrian : highway=pedestrian
 		//highway track : highway=track
 		//highway footway : highway=footway
-		highway cycleway : highway=cycleway
+		//highway cycleway : highway=cycleway
 		//highway path : highway=path
 		//highway access private : access=private AND highway
 		//highway access destination : access=destination AND highway

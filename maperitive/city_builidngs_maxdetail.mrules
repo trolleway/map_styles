@@ -71,6 +71,7 @@ features
 		river : waterway=river 
 		stream : waterway=stream
 		railway : railway=rail
+		railway narrow : railway=narrow_gauge
 		line barrier : barrier=wall OR barrier=fence OR barrier=retaining_wall
 		highway motorway : highway=motorway
 		highway motorway link : highway=motorway_link
@@ -573,7 +574,26 @@ rules
 			min-zoom : 13
 			line-style : solid
 			line-color : #222222
-			line-width : 1
+			line-width : 2
+			border-style : none
+			border-color : #222222
+			border-width : 25%
+			curved : false
+		draw : line
+
+					
+	target : railway narrow
+		define
+			min-zoom : 13
+			line-color : #222222
+			line-width : 2
+			curved : false
+//		draw : line
+		define
+			min-zoom : 13
+			line-style : solid
+			line-color : #bb2222
+			line-width : 2
 			border-style : none
 			border-color : #222222
 			border-width : 25%

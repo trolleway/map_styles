@@ -85,7 +85,7 @@ features
 		drain : waterway=drain
 		dock : waterway=dock
 		railway rail : railway=rail
-		railway lightrail : railway=light_rail
+		railway lightrail : railway=light_rail or railway=tram
 		//platform : railway=platform OR public_transport=platform
 		//line barrier : barrier=wall OR barrier=fence
 		highway motorway : highway=motorway OR (highway=construction AND construction=motorway)
@@ -148,13 +148,13 @@ features
 		convenience : shop=convenience
 		bakery : shop=bakery
 		restaurant : amenity=restaurant
-		cafe : amenity=cafe
+		//cafe : amenity=cafe
 		pharmacy : amenity=pharmacy
 		peak : natural=peak
 		//powertower : power=tower OR power=pole
 		info : information=guidepost
 		bollard : barrier=bollard
-		lift_gate : barrier=lift_gate
+		//lift_gate : barrier=lift_gate
 		aerialway station : aerialway=station
 		motorway_junction : highway=motorway_junction
 
