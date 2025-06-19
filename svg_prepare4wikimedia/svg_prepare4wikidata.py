@@ -15,9 +15,32 @@ CSS_DEFINITION = '''<style type="text/css">
     font-size: 28px;
     fill: #888;
 }
+.stroked_label {
+    font-family: sans;
+    font-weight: 400;
+    font-size: 42px;
+    fill:black;
+    stroke:white;
+    stroke-width: 10px;
+    paint-order: stroke fill;
+    stroke-linejoin: round;
+}
 </style>
 '''
 
+def extract_transform_translation(g_element):
+    ''' get X Y position from transform'''
+    transform = g_element.get('transform')
+    if transform:
+        match = re.match(r'matrix\(([^)]+)\)', transform)
+        if match:
+            parts = match.group(1).split(',')
+            if len(parts) == 6:
+                tx = float(parts[4].strip())
+                ty = float(parts[5].strip())
+                return tx, ty
+    return None, None
+    
 def simplify_svg(input_path):
     # Parse SVG
     ET.register_namespace('', "http://www.w3.org/2000/svg")
@@ -28,7 +51,7 @@ def simplify_svg(input_path):
     style_elem = ET.fromstring(CSS_DEFINITION)
     root.insert(0, style_elem)
 
-    # Replace <text> elements
+    # Replace <text> elements v1
     for elem in root.iter():
         if elem.tag.endswith('text'):
             # Only replace if it matches the pattern
@@ -48,7 +71,25 @@ def simplify_svg(input_path):
                 elem.set('x', x)
                 elem.set('y', y)
                 elem.text = text_content
+                
+    # Replace <text> elements v2
+    ns = {'svg': "http://www.w3.org/2000/svg"}
+    labels = []
+    for g in root.findall('.//svg:g', ns):
+        text_elem = g.find('svg:text', ns)
+        if text_elem is not None:
+            x, y = extract_transform_translation(g)
+            content = text_elem.text
+            if x is not None and y is not None:
+                labels.append({'x': x, 'y': y, 'text': content})
+                print(x,y,content)
 
+                # Remove <g> element from its parent
+                for parent in root.iter():
+                    if g in list(parent):
+                        parent.remove(g)
+                        break
+    
     # Get SVG canvas size
     width = root.attrib.get('width')
     height = root.attrib.get('height')
@@ -68,11 +109,19 @@ def simplify_svg(input_path):
     # Add copyright text at bottom
     copyright_text = ET.Element('text', {
         'class': 'copyright',
-        'x': str(width * 0.02),
-        'y': str(height - 20)
+        'x': str(round(width * 0.02)),
+        'y': str(round(height - 20))
     })
-    copyright_text.text = 'Map data: (c) Openstreetmap'
+    copyright_text.text = 'Map data: © Openstreetmap, labels transliterated'
     root.append(copyright_text)
+    
+    for label in labels:
+        labelobj=ET.Element('text', {
+        'class': 'stroked_label',
+        'x': str(label['x']),
+        'y': str(label['y'])})
+        labelobj.text=label['text']
+        root.append(labelobj)
 
     return ET.tostring(root, encoding='unicode')
 
