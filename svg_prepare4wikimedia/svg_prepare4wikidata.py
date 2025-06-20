@@ -12,11 +12,11 @@ CSS_DEFINITION = '''<style type="text/css">
 }
 .copyright {
     font-family: sans;
-    font-size: 28px;
+    font-size: 32px;
     fill: #888;
 }
 .stroked_label {
-    font-family: sans;
+    font-family: sans-serif;
     font-weight: 400;
     font-size: 42px;
     fill:black;
@@ -107,23 +107,36 @@ def simplify_svg(input_path):
         width, height = 1000, 1000
 
     # Add copyright text at bottom
-    copyright_text = ET.Element('text', {
+    switch_el = ET.Element('switch', {
         'class': 'copyright',
-        'x': str(round(width * 0.02)),
-        'y': str(round(height - 20))
-    })
-    copyright_text.text = 'Map data: © Openstreetmap, labels transliterated'
-    root.append(copyright_text)
+        'transform': 'translate('+str(round(width * 0.02))+','+str(round(height - 20))+')'
+        })
+
+    # Add <text> children with systemLanguage attributes
+    ET.SubElement(switch_el, 'text', {'systemLanguage': 'en'}).text = 'Map data: © Openstreetmap'
+    ET.SubElement(switch_el, 'text', {'systemLanguage': 'ru'}).text = 'Картографические данные: пользователи Openstreetmap ©'
+    ET.SubElement(switch_el, 'text').text = 'Map data: © Openstreetmap, labels transliterated'
+    root.append(switch_el)
+        
+
     
     for label in labels:
-        labelobj=ET.Element('text', {
+        switch_el = ET.Element('switch', {
         'class': 'stroked_label',
-        'x': str(label['x']),
-        'y': str(label['y'])})
-        labelobj.text=label['text']
-        root.append(labelobj)
+        'transform': 'translate('+str(round(label['x']))+','+str(round(label['y']))+')'
+        })
 
-    return ET.tostring(root, encoding='unicode')
+        # Add <text> children with systemLanguage attributes
+        ET.SubElement(switch_el, 'text', {'systemLanguage': 'en'}).text = label['text']
+        ET.SubElement(switch_el, 'text').text = label['text']  # fallback text with no language
+        root.append(switch_el)
+    
+    
+    
+
+
+    ET.indent(tree, space="\t", level=0)
+    return '<?xml version="1.0"?>\n' + ET.tostring(root, encoding='unicode')
 
 def main():
     parser = argparse.ArgumentParser(description='Simplify SVG for Wikimedia.')
